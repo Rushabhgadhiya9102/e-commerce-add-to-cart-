@@ -71,21 +71,35 @@ let cartBtn = document.querySelectorAll(".cart-btn");
 let items = document.querySelectorAll(".latest-shoes .slider-item");
 let cartItem = JSON.parse(localStorage.getItem("cartItems")) || []
 
+// ------ CHANGE PAGE -------
+
 cart.style.display="none";
 
 function toCartPage(){
-  home.style.display="none"
-  cart.style.display="block"
+  home.style.display="none";
+  cart.style.display="block";
+
+  window.scrollTo({
+    top: 0,
+    behavior:'smooth'
+  })
 }
+
 
 function toHomePage(){
   home.style.display = "block";
   cart.style.display = "none";
-}
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 
+}
+// ------ CHANGE PAGE -------
 // ------ MAIN LOGIC --------
 
 
+// ----- ADD TO CART BUTTON ----- 
 cartBtn.forEach((btn) => {
   
   btn.addEventListener("click", (e) =>{
@@ -119,6 +133,8 @@ cartBtn.forEach((btn) => {
   });
 
 });
+
+// ----- DISPLAY PRODUCT AND QUANTITY FUNCTIONALITY IN CART ------
 
 function updateCart(){
 
@@ -189,6 +205,8 @@ function updateCart(){
       updateCart()
     });
   });
+
+  // ---- SHOW PRICES ----
 
   const deliveryCharges = cartItem.length > 0 ? 600 : 0;  
   const total = subtotal + deliveryCharges;
